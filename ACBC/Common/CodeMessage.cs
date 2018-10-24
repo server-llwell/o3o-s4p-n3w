@@ -32,5 +32,8 @@ namespace ACBC.Common
         InterfaceValueError = 4004,//接口的参数不对
         InterfaceDBError=4005,//接口数据库操作失败
         NeedLogin = 4006,
+
+        InvalidHomePageShop = 10001,
+        InvalidHomePageInfoShop = 10002,
     }
 }

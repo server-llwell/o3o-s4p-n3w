@@ -13,6 +13,7 @@ namespace ACBC.Common
     {
         OpenApi,
         UploadApi,
+        HomeApi
     }
 
     public enum CheckType
@@ -93,6 +94,27 @@ namespace ACBC.Common
         public override ApiType GetApiType()
         {
             return ApiType.OpenApi;
+        }
+
+    }
+    /// <summary>
+    /// 首页
+    /// </summary>
+    public class HomeApi : BaseApi
+    {
+        public override CheckType GetCheckType()
+        {
+            return CheckType.Open;
+        }
+
+        public override InputType GetInputType()
+        {
+            return InputType.Body;
+        }
+
+        public override ApiType GetApiType()
+        {
+            return ApiType.HomeApi;
         }
 
     }

@@ -11,10 +11,10 @@ namespace ACBC.Dao
         public DBManager()
         {
 #if DEBUG
-            var url = System.Environment.GetEnvironmentVariable("MysqlDBUrl", EnvironmentVariableTarget.User);
+            var url = System.Environment.GetEnvironmentVariable("FWQDBUrl", EnvironmentVariableTarget.User);
             var uid = System.Environment.GetEnvironmentVariable("MysqlDBUser", EnvironmentVariableTarget.User);
-            var port = System.Environment.GetEnvironmentVariable("MysqlDBPort", EnvironmentVariableTarget.User);
-            var passd = System.Environment.GetEnvironmentVariable("MysqlDBPassword", EnvironmentVariableTarget.User);
+            var port = System.Environment.GetEnvironmentVariable("FWQDBPort", EnvironmentVariableTarget.User);
+            var passd = System.Environment.GetEnvironmentVariable("FWQDBPassword", EnvironmentVariableTarget.User);
 #endif
 #if !DEBUG
             var url = System.Environment.GetEnvironmentVariable("MysqlDBUrl");
@@ -25,7 +25,7 @@ namespace ACBC.Dao
 #endif
             this.str = "Server=" + url
                      + ";Port=" + port
-                     + ";Database=pg;Uid=" + uid
+                     + ";Database=oto;Uid=" + uid
                      + ";Pwd=" + passd
                      + ";CharSet=utf8mb4; SslMode =none;";
             Console.Write(this.str);

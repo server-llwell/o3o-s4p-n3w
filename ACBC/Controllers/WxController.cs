@@ -28,5 +28,13 @@ namespace ACBC.Controllers
         {
             return Json(Global.BUSS.BussResults(this, new UploadApi { param = param }));
         }
+
+        [HttpPost]
+        public ActionResult Home([FromBody]HomeApi homeApi)
+        {
+            if (homeApi == null)
+                return Json(new ResultsJson(new Message(CodeMessage.PostNull, "PostNull"), null));
+            return Json(Global.BUSS.BussResults(this, homeApi));
+        }
     }
 }

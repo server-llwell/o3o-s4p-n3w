@@ -108,7 +108,10 @@ namespace ACBC.Buss
         public string phone;
         public string userType;
     }
-
+    public class HomeShopParam
+    {
+        public string id;
+    }
     #endregion
 
     #region DaoObjs
@@ -124,6 +127,43 @@ namespace ACBC.Buss
         public string scanCode;
         public string sex;
     }
-
+    public class HomeShop
+    {
+        public string id;
+        public string shopId; //店铺id
+        public string title;//标题
+        public string createTime;//发表时间
+        public string adress;//地址
+        public string tel;//联系电话
+        public string officeHours;//营业时间
+        public string shopType;//商店类型
+        public string imgUrl;//图片地址
+    }
+    public class HomeShopInfo
+    {
+        public string id;
+        public string shopId; //店铺id
+        public string title;//标题
+        public string createTime;//发表时间
+        public string adress;//地址
+        public string tel;//联系电话
+        public string officeHours;//营业时间
+        public string shopType;//商店类型
+        public string imgUrl;//图片地址
+        public string shopName;//店铺名
+        public string content;//文章内容
+        public string message;//商家留言
+        public string mapUrl;//地图地址-无效
+        public List<HomeShopGoods> homeShopGoodsList = new List<HomeShopGoods>();//新上架商品
+    }
+    public class HomeShopGoods
+    {
+        public string id;
+        public string shopId;//店铺id
+        public string goodsId;//商品id
+        public string goodsName;//商品名称
+        public string slt;//商品图片
+        public string price;//商品价格
+    }
     #endregion
 }
