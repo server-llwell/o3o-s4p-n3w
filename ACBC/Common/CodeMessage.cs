@@ -33,7 +33,12 @@ namespace ACBC.Common
         InterfaceDBError=4005,//接口数据库操作失败
         NeedLogin = 4006,
 
-        InvalidHomePageShop = 10001,
-        InvalidHomePageInfoShop = 10002,
+        UserExist = 10001,
+        UserRegError = 10002,
+
+        InvalidHomePageShop = 11001,
+        InvalidHomePageInfoShop = 11002,
+
+
     }
 }
