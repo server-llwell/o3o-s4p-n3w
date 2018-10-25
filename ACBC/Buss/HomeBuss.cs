@@ -17,17 +17,30 @@ namespace ACBC.Buss
         {
             return ApiType.HomeApi;
         }
+
         public object Do_GetHomeShopList(BaseApi baseApi)
         {
             HomeDao homeDao = new HomeDao();
-            List<HomeShop> homeShopList = homeDao.GetHomeShopList();
 
-            if (homeShopList == null)
+            HomeShopList home = Utils.GetCache<HomeShopList>();
+            if (home==null)
             {
-                throw new ApiException(CodeMessage.InvalidHomePageShop, "InvalidHomePageShop");
+                home = new HomeShopList();
+                home.homeShopList = homeDao.GetHomeShopList();
+
+                if (home.homeShopList == null)
+                {
+                    throw new ApiException(CodeMessage.InvalidHomePageShop, "InvalidHomePageShop");
+                }
+                else
+                {
+                    Utils.SetCache(home);
+                }
             }
-            return homeShopList;
+           
+            return home;
         }
+
         public object Do_GetHomeShopInfo(BaseApi baseApi)
         {
             HomeShopParam homeShopParam = JsonConvert.DeserializeObject<HomeShopParam>(baseApi.param.ToString());
@@ -37,11 +50,21 @@ namespace ACBC.Buss
             }
 
             HomeDao homeDao = new HomeDao();
-            HomeShopInfo homeShopInfo = homeDao.GetHomeShopInfo(homeShopParam.id);
-            if (homeShopInfo == null)
+            HomeShopInfo homeShopInfo = Utils.GetCache<HomeShopInfo>(homeShopParam);
+            if (homeShopInfo==null)
             {
-                throw new ApiException(CodeMessage.InvalidHomePageInfoShop, "InvalidHomePageInfoShop");
+                homeShopInfo = homeDao.GetHomeShopInfo(homeShopParam.id);
+                if (homeShopInfo == null)
+                {
+                    throw new ApiException(CodeMessage.InvalidHomePageInfoShop, "InvalidHomePageInfoShop");
+                }
+                else
+                {
+                    homeShopInfo.Unique = homeShopParam.GetUnique();
+                    Utils.SetCache(homeShopInfo);
+                }
             }
+            
             return homeShopInfo;
         }
     }

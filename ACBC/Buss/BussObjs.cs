@@ -108,7 +108,7 @@ namespace ACBC.Buss
         public string phone;
         public string userType;
     }
-    public class HomeShopParam
+    public class HomeShopParam:BussParam
     {
         public string id;
     }
@@ -127,6 +127,11 @@ namespace ACBC.Buss
         public string scanCode;
         public string sex;
     }
+
+    public class HomeShopList: BussCache
+    {
+        public List<HomeShop> homeShopList = new List<HomeShop>();
+    }
     public class HomeShop
     {
         public string id;
@@ -139,7 +144,7 @@ namespace ACBC.Buss
         public string shopType;//商店类型
         public string imgUrl;//图片地址
     }
-    public class HomeShopInfo
+    public class HomeShopInfo : BussCache
     {
         public string id;
         public string shopId; //店铺id
