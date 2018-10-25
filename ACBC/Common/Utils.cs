@@ -39,6 +39,10 @@ namespace ACBC.Common
             string valueStr = JsonConvert.SerializeObject(value);
             return db.StringSet(key, valueStr, expiry);
         }
+        public static bool SetCache(BussCache value)
+        {
+            return SetCache(value, Global.REDIS_EXPIRY_H, Global.REDIS_EXPIRY_M, Global.REDIS_EXPIRY_S);
+        }
 
         public static bool SetCache(BussCache value, int hours, int minutes, int seconds)
         {
