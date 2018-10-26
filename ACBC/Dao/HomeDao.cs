@@ -15,7 +15,7 @@ namespace ACBC.Dao
         {
             List<HomeShop> list = new List<HomeShop>();
             StringBuilder builder = new StringBuilder();
-            builder.AppendFormat(ShopSqls.SELECT_HOMESHOPLIST);
+            builder.AppendFormat(HomeSqls.SELECT_HOMESHOPLIST);
             string sql = builder.ToString();
             DataTable dt = DatabaseOperationWeb.ExecuteSelectDS(sql, "T").Tables[0];
             if (dt != null)
@@ -45,7 +45,7 @@ namespace ACBC.Dao
             HomeShopInfo homeShopInfo = null;
 
             StringBuilder builder = new StringBuilder();
-            builder.AppendFormat(ShopSqls.SELECT_HOMESHOP_BY_ID, id);
+            builder.AppendFormat(HomeSqls.SELECT_HOMESHOP_BY_ID, id);
             string sql = builder.ToString();
             DataTable dt = DatabaseOperationWeb.ExecuteSelectDS(sql, "T").Tables[0];
             if (dt != null && dt.Rows.Count == 1)
@@ -67,7 +67,7 @@ namespace ACBC.Dao
                     mapUrl = dt.Rows[0]["mapUrl"].ToString()
                 };
                 StringBuilder builder1 = new StringBuilder();
-                builder1.AppendFormat(ShopSqls.SELECT_HOMESHOPGOODS_BY_SHOPID, homeShopInfo.shopId);
+                builder1.AppendFormat(HomeSqls.SELECT_HOMESHOPGOODS_BY_SHOPID, homeShopInfo.shopId);
                 string sql1 = builder1.ToString();
                 DataTable dt1 = DatabaseOperationWeb.ExecuteSelectDS(sql1, "T").Tables[0];
                 if (dt1 != null)
@@ -89,20 +89,22 @@ namespace ACBC.Dao
             }
             return homeShopInfo;
         }
+
+        private class HomeSqls
+        {
+            public const string SELECT_HOMESHOPLIST = ""
+                + "SELECT * "
+                + "FROM T_HOME_SHOP "
+                + "WHERE FLAG = '1'";
+            public const string SELECT_HOMESHOP_BY_ID = ""
+                + "SELECT * "
+                + "FROM T_HOME_SHOP "
+                + "WHERE ID = '{0}'";
+            public const string SELECT_HOMESHOPGOODS_BY_SHOPID = ""
+                + "SELECT * "
+                + "FROM T_HOME_GOODS "
+                + "WHERE SHOPID = '{0}'";
+        }
     }
-    public class ShopSqls
-    {
-        public const string SELECT_HOMESHOPLIST = ""
-            + "SELECT * "
-            + "FROM T_HOME_SHOP "
-            + "WHERE FLAG = '1'";
-        public const string SELECT_HOMESHOP_BY_ID = ""
-            + "SELECT * "
-            + "FROM T_HOME_SHOP "
-            + "WHERE ID = '{0}'";
-        public const string SELECT_HOMESHOPGOODS_BY_SHOPID = ""
-            + "SELECT * "
-            + "FROM T_HOME_GOODS "
-            + "WHERE SHOPID = '{0}'";
-    }
+    
 }

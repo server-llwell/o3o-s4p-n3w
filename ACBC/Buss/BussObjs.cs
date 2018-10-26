@@ -105,9 +105,15 @@ namespace ACBC.Buss
         public string nickName;
         public string province;
     }
+
     public class HomeShopParam:BussParam
     {
         public string id;
+    }
+
+    public class GetShopInfoParam : BussParam
+    {
+        public string shopId;
     }
     #endregion
 
@@ -164,5 +170,23 @@ namespace ACBC.Buss
         public string slt;//商品图片
         public string price;//商品价格
     }
+
+    public class ShopInfo : BussCache
+    {
+        public string shopId;
+        public string shopName;
+        public string shopDesc;
+        public string shopImg;
+        public List<ShopGoods> hotGoods = new List<ShopGoods>();
+    }
+
+    public class ShopGoods
+    {
+        public string goodsId;
+        public string goodsName;
+        public string goodsPrice;
+        public string goodsImg;
+    }
+
     #endregion
 }

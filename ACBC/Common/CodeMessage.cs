@@ -38,7 +38,8 @@ namespace ACBC.Common
 
         InvalidHomePageShop = 11001,
         InvalidHomePageInfoShop = 11002,
+        InvalidShopId = 11003,
 
-
+        InvalidUserCode = 12001,
     }
 }
