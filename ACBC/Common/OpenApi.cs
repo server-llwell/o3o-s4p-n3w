@@ -16,6 +16,7 @@ namespace ACBC.Common
         HomeApi,
         ShopApi,
         UserApi,
+        OrderApi,
     }
 
     public enum CheckType
@@ -125,7 +126,8 @@ namespace ACBC.Common
     {
         public override CheckType GetCheckType()
         {
-            return CheckType.Token;
+            return CheckType.OpenToken;
+           
         }
 
         public override InputType GetInputType()
@@ -157,5 +159,23 @@ namespace ACBC.Common
             return ApiType.UserApi;
         }
 
+    }
+
+    public class OrderApi : BaseApi
+    {
+        public override CheckType GetCheckType()
+        {
+            return CheckType.OpenToken;
+        }
+
+        public override InputType GetInputType()
+        {
+           return InputType.Body;
+        }
+
+        public override ApiType GetApiType()
+        {
+            return ApiType.OrderApi;
+        }
     }
 }
